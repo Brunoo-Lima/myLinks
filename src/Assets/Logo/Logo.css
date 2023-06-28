@@ -1,0 +1,13 @@
+.logo {
+  margin-top: 2.75rem;
+  margin-bottom: 1.75rem;
+  color: #fff;
+  font-size: 3.375rem;
+}
+
+.logo-txt {
+  background: linear-gradient(#f00000, #e54);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
