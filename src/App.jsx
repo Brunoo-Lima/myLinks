@@ -6,9 +6,13 @@ import Admin from './Components/Admin/Admin';
 import Login from './Components/Login/Login';
 import NotFound from './Components/Helper/NotFound';
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 const App = () => {
   return (
     <>
+      <ToastContainer autoClose={1500} />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
