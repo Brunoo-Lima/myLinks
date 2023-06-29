@@ -1,4 +1,3 @@
-import React from 'react';
 import './Header.css';
 import { BiLogOut } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
@@ -18,7 +17,7 @@ export const Header = () => {
         </button>
 
         <Link to="/admin">Links</Link>
-        <Link to="/admin/social">Redes sociais</Link>
+        <Link to="/admin/social">Redes Sociais</Link>
       </nav>
     </header>
   );

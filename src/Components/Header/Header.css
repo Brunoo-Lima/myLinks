@@ -24,9 +24,10 @@
 .nav-header a {
   margin-right: 14px;
   color: #21242d;
+  font-weight: bold;
   transition: color 0.3s;
 }
 
 .nav-header a:hover {
-  color: #e54;
+  color: #fb1;
 }

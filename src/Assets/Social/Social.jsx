@@ -1,4 +1,3 @@
-import React from 'react';
 import './Social.css';
 
 export const Social = ({ children, url }) => {

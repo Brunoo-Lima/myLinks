@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './Network.css';
 import { Header } from '../Header/Header';
 import Input from '../Form/Input';
 import { MdAddLink } from 'react-icons/md';
@@ -9,18 +8,18 @@ import { database } from '../../services/FirebaseConection';
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 
 const Network = () => {
-  const [face, setFace] = useState('');
-  const [insta, setInsta] = useState('');
-  const [youtube, setYoutube] = useState('');
+  const [linkedIn, setLinkedIn] = useState('');
+  const [gitHub, setGitHub] = useState('');
+  const [instagram, setInstagram] = useState('');
 
   useEffect(() => {
     async function loadLinks() {
       const docRef = doc(database, 'social', 'link');
       getDoc(docRef).then((snapshot) => {
         if (snapshot.data() !== undefined) {
-          setFace(snapshot.data().face);
-          setInsta(snapshot.data().insta);
-          setYoutube(snapshot.data().youtube);
+          setLinkedIn(snapshot.data().linkedIn);
+          setGitHub(snapshot.data().gitHub);
+          setInstagram(snapshot.data().instagram);
         }
       });
     }
@@ -31,9 +30,9 @@ const Network = () => {
     event.preventDefault();
 
     setDoc(doc(database, 'social', 'link'), {
-      face: face,
-      insta: insta,
-      youtube: youtube,
+      linkedIn: linkedIn,
+      gitHub: gitHub,
+      instagram: instagram,
     })
       .then(() => {
         toast.success('Salvo com sucesso!');
@@ -47,27 +46,35 @@ const Network = () => {
     <div className="adminContainer">
       <Header />
 
-      <h1 className="title-social">Suas redes sociais</h1>
+      <h1
+        style={{
+          color: '#fff',
+          marginTop: '2.5rem',
+          marginBottom: '1.5rem',
+        }}
+      >
+        Suas redes sociais
+      </h1>
 
       <form className="form" onSubmit={handleSave}>
-        <label className="label">Link do facebook</label>
+        <label className="label">Link do LinkedIn</label>
         <Input
-          value={face}
-          onChange={({ target }) => setFace(target.value)}
+          value={linkedIn}
+          onChange={({ target }) => setLinkedIn(target.value)}
           placeholder="Digite a url"
         />
 
-        <label className="label">Link do instagram</label>
+        <label className="label">Link do GitHub</label>
         <Input
-          value={insta}
-          onChange={({ target }) => setInsta(target.value)}
+          value={gitHub}
+          onChange={({ target }) => setGitHub(target.value)}
           placeholder="Digite a url"
         />
 
-        <label className="label">Link do youtube</label>
+        <label className="label">Link do Instagram</label>
         <Input
-          value={youtube}
-          onChange={({ target }) => setYoutube(target.value)}
+          value={instagram}
+          onChange={({ target }) => setInstagram(target.value)}
           placeholder="Digite a url"
         />
 

@@ -8,10 +8,17 @@
 }
 
 .homeContainer h1 {
-  margin-bottom: 0.875rem;
   color: #fff;
   font-size: 2.75rem;
   padding-top: 5.875rem;
+}
+
+.span {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.875rem;
+  color: #ca1515;
+  font-weight: 700;
 }
 
 .links {

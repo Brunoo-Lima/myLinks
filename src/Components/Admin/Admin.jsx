@@ -30,7 +30,7 @@ const Admin = () => {
     const queryRef = query(linksRef, orderBy('created', 'asc'));
 
     //onSnapshot monitora em tempo real o banco
-    const unsub = onSnapshot(queryRef, (snapshot) => {
+    onSnapshot(queryRef, (snapshot) => {
       let list = [];
       snapshot.forEach((doc) => {
         list.push({

@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     async function checkedLogin() {
-      const unsub = onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, (user) => {
         if (user) {
           const userData = {
             uid: user.uid,

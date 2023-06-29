@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Home.css';
 import { Social } from '../../Assets/Social/Social';
-import { FaFacebook, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import {
   getDocs,
   collection,
@@ -47,9 +47,9 @@ const Home = () => {
       getDoc(docRef).then((snapshot) => {
         if (snapshot.data() !== undefined) {
           setSocial({
-            face: snapshot.data().face,
-            insta: snapshot.data().insta,
-            youtube: snapshot.data().youtube,
+            linkedIn: snapshot.data().linkedIn,
+            gitHub: snapshot.data().gitHub,
+            instagram: snapshot.data().instagram,
           });
         }
       });
@@ -60,6 +60,7 @@ const Home = () => {
   return (
     <div className="homeContainer">
       <h1>Bruno Lima</h1>
+      <span className="span">Desenvolvedor Front-End</span>
 
       <main className="links">
         {links.map((item) => (
@@ -78,12 +79,14 @@ const Home = () => {
 
         {links.length !== 0 && Object.keys(social).length > 0 && (
           <footer>
-            <Social url={social?.face}>
-              <FaFacebook size={35} color="#fff" />
+            <Social url={social?.linkedIn}>
+              <FaLinkedin size={35} color="#fff" />
             </Social>
-
-            <Social url={social?.youtube}>
-              <FaYoutube size={35} color="#fff" />
+            <Social url={social?.gitHub}>
+              <FaGithub size={35} color="#fff" />
+            </Social>
+            <Social url={social?.instagram}>
+              <FaInstagram size={35} color="#fff" />
             </Social>
           </footer>
         )}
