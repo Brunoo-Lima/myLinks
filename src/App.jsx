@@ -7,6 +7,7 @@ import NotFound from './Components/Helper/NotFound';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from './Components/Helper/ProtectedRoute';
+import Network from './Components/Networks/Network';
 
 const App = () => {
   return (
@@ -24,7 +25,14 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-
+          <Route
+            path="/admin/social"
+            element={
+              <ProtectedRoute>
+                <Network />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
