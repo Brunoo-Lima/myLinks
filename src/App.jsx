@@ -24,6 +24,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

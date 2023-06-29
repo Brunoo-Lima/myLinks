@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Admin.css';
 import { Header } from '../../Components/Header/Header';
 import { Logo } from '../../Assets/Logo/Logo';
@@ -23,6 +23,27 @@ const Admin = () => {
   const [urlInput, setUrlInput] = useState('');
   const [backgroundColorInput, setBackgroundColorInput] = useState('#f1f1f1');
   const [textColorInput, setTextColorInput] = useState('#121212');
+  const [links, setLinks] = useState([]);
+
+  useEffect(() => {
+    const linksRef = collection(database, 'links');
+    const queryRef = query(linksRef, orderBy('created', 'asc'));
+
+    //onSnapshot monitora em tempo real o banco
+    const unsub = onSnapshot(queryRef, (snapshot) => {
+      let list = [];
+      snapshot.forEach((doc) => {
+        list.push({
+          id: doc.id,
+          name: doc.data().name,
+          url: doc.data().url,
+          bg: doc.data().bg,
+          color: doc.data().color,
+        });
+      });
+      setLinks(list);
+    });
+  }, []);
 
   async function handleRegister(event) {
     event.preventDefault();
@@ -46,6 +67,11 @@ const Admin = () => {
       .catch(() => {
         toast.error('Erro ao salvar o link');
       });
+  }
+
+  async function handleDeleteLink(id) {
+    const docRef = doc(database, 'links', id);
+    await deleteDoc(docRef);
   }
 
   return (
@@ -107,17 +133,23 @@ const Admin = () => {
 
       <h2 className="title">Meus links</h2>
 
-      <article
-        className="linkList animatePop"
-        style={{ backgroundColor: '#000', color: '#fff' }}
-      >
-        <p>Grupo exclusivo no Telegram</p>
-        <div>
-          <button className="btn-remove">
-            <FiTrash2 size={18} color="#fff" />
-          </button>
-        </div>
-      </article>
+      {links.map((item, index) => (
+        <article
+          key={index}
+          className="linkList animatePop"
+          style={{ backgroundColor: item.bg, color: item.color }}
+        >
+          <p>{item.name}</p>
+          <div>
+            <button
+              className="btn-remove"
+              onClick={() => handleDeleteLink(item.id)}
+            >
+              <FiTrash2 size={18} color="#fff" />
+            </button>
+          </div>
+        </article>
+      ))}
     </div>
   );
 };
